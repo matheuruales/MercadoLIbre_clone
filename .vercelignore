@@ -1,0 +1,8 @@
+.git
+.gitignore
+.claude
+node_modules
+*.md
+tareas
+.DS_Store
+*.png
