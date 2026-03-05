@@ -3,20 +3,1280 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Proyecto HTML/CSS/JS - Arquitectura 4 Capas</title>
+    <title>Mercado Libre Colombia - Compra Online</title>
     <link rel="stylesheet" href="./src/presentation/styles/main.css" />
+    <link rel="stylesheet" href="./src/presentation/styles/portfolio-dev2.css" />
   </head>
   <body>
-    <main class="app">
-      <h1>Arquitectura 4 Capas (Dominio)</h1>
-      <p>
-        Proyecto base listo para crecer de forma modular: Presentación, Aplicación,
-        Dominio e Infraestructura.
-      </p>
-      <button id="ping">Probar JS</button>
-      <p id="output" class="muted"></p>
+
+    <!-- ══ NAVBAR (feature/luis/navbar) ══ -->
+    <header class="ml-navbar" role="banner">
+      <div class="ml-navbar__inner">
+        <div class="ml-navbar__top">
+          <a href="./index.html" class="ml-navbar__logo-link">
+            <img
+              src="./public/images/mercado-libre-logo.svg"
+              alt="Mercado Libre Colombia - Inicio"
+              class="ml-navbar__logo"
+            />
+          </a>
+
+          <form class="ml-navbar__search" role="search" aria-label="Buscar productos">
+            <input
+              type="search"
+              name="q"
+              class="ml-navbar__search-input"
+              placeholder="Buscar productos, marcas y más…"
+              aria-label="Buscar productos, marcas y más"
+            />
+            <button type="submit" class="ml-navbar__search-button" aria-label="Buscar">
+              <span class="ml-navbar__search-icon" aria-hidden="true"></span>
+            </button>
+          </form>
+
+          <nav class="ml-navbar__account-nav" aria-label="Opciones de cuenta">
+            <a href="#" class="ml-navbar__account-link">Crea tu cuenta</a>
+            <a href="#" class="ml-navbar__account-link">Ingresa</a>
+            <a href="#" class="ml-navbar__account-link">Mis compras</a>
+          </nav>
+
+          <button type="button" class="ml-navbar__cart" aria-label="Ver carrito">
+            <svg class="ml-navbar__cart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            class="ml-navbar__menu-toggle"
+            aria-label="Abrir menú de navegación"
+            aria-expanded="false"
+          >
+            <span class="ml-navbar__menu-toggle-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="ml-navbar__bottom">
+          <button type="button" class="ml-navbar__location" aria-label="Seleccionar ubicación">
+            <img
+              src="./public/images/location.svg"
+              alt=""
+              class="ml-navbar__location-icon"
+              aria-hidden="true"
+            />
+            <span class="ml-navbar__location-text">
+              <span class="ml-navbar__location-label">Ingresa tu</span>
+              <span class="ml-navbar__location-main">ubicación</span>
+            </span>
+          </button>
+
+          <nav class="ml-navbar__menu" aria-label="Navegación principal">
+            <ul class="ml-navbar__menu-list">
+              <li class="ml-navbar__menu-item ml-navbar__menu-item--has-chevron">
+                <a href="#" class="ml-navbar__menu-link">Categorías</a>
+                <span class="ml-navbar__menu-chevron" aria-hidden="true">▾</span>
+              </li>
+              <li class="ml-navbar__menu-item">
+                <a href="#" class="ml-navbar__menu-link">Ofertas</a>
+              </li>
+              <li class="ml-navbar__menu-item">
+                <a href="#" class="ml-navbar__menu-link">Cupones</a>
+              </li>
+              <li class="ml-navbar__menu-item ml-navbar__menu-item--badge">
+                <a href="#" class="ml-navbar__menu-link">Supermercado</a>
+                <span class="ml-navbar__badge">NUEVO</span>
+              </li>
+              <li class="ml-navbar__menu-item">
+                <a href="#" class="ml-navbar__menu-link">Moda</a>
+              </li>
+              <li class="ml-navbar__menu-item">
+                <a href="#" class="ml-navbar__menu-link">Vender</a>
+              </li>
+              <li class="ml-navbar__menu-item">
+                <a href="#" class="ml-navbar__menu-link">Ayuda / PQR</a>
+              </li>
+              <li class="ml-navbar__menu-item ml-navbar__menu-item--dropdown">
+                <button
+                  type="button"
+                  class="ml-navbar__menu-link ml-navbar__menu-link--button ml-navbar__menu-link--cv-devs"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="ml-navbar-devs-dropdown"
+                >
+                  CV Devs
+                </button>
+                <ul
+                  class="ml-navbar__dropdown"
+                  id="ml-navbar-devs-dropdown"
+                  role="menu"
+                >
+                  <li>
+                    <button
+                      type="button"
+                      class="ml-navbar__dropdown-item"
+                      data-dev="dev1"
+                      role="menuitem"
+                    >
+                      Dev1
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      class="ml-navbar__dropdown-item"
+                      data-dev="dev2"
+                      role="menuitem"
+                    >
+                      Dev2
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      class="ml-navbar__dropdown-item"
+                      data-dev="dev3"
+                      role="menuitem"
+                    >
+                      Dev3
+                    </button>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- ══ BANNER PRINCIPAL ══ -->
+    <section class="hero-slider" aria-label="Banners promocionales">
+      <div class="hero-slider__track" id="sliderTrack">
+        <img src="./public/images/header.webp"  alt="Descuentos premium hasta 50%" />
+        <img src="./public/images/header2.webp" alt="Ofertas imperdibles desde 50%" />
+        <img src="./public/images/header3.webp" alt="Los más vendidos 50% DCTO" />
+        <img src="./public/images/header4.webp" alt="Todo por menos de $99.900" />
+      </div>
+      <button class="hero-slider__btn hero-slider__btn--prev" id="sliderPrev" aria-label="Anterior">&#8249;</button>
+      <button class="hero-slider__btn hero-slider__btn--next" id="sliderNext" aria-label="Siguiente">&#8250;</button>
+      <div class="hero-slider__dots" id="sliderDots"></div>
+    </section>
+
+    <!-- ══ PRODUCTOS (feature/matheu/ui-styles) ══ -->
+    <main class="container">
+      <div id="view-home" class="view view--active" data-view="home">
+        <div class="section-header">
+        <h1 class="section-header__title">Ofertas del día</h1>
+        <span class="section-header__subtitle">Productos seleccionados para vos</span>
+      </div>
+
+      <div id="product-grid" class="product-grid" aria-live="polite">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+
+      <div id="error-msg" class="error-msg" hidden>
+        <p>No se pudieron cargar los productos.</p>
+        <button id="retry-btn" class="retry-btn">Reintentar</button>
+      </div>
+      </div>
+
+      <!-- ══ PRODUCT DETAIL VIEW ══ -->
+      <div id="view-product" class="view" hidden>
+        <div class="pd">
+          <!-- Breadcrumb -->
+          <nav class="pd__breadcrumb" aria-label="Navegación">
+            <button type="button" class="pd__back-btn" id="pd-back-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+              Volver al listado
+            </button>
+            <span class="pd__breadcrumb-sep" aria-hidden="true">›</span>
+            <span class="pd__breadcrumb-cat" id="pd-breadcrumb-cat"></span>
+            <span class="pd__breadcrumb-sep" aria-hidden="true">›</span>
+            <span class="pd__breadcrumb-title" id="pd-breadcrumb-title"></span>
+          </nav>
+
+          <!-- Main layout: gallery | info | sidebar -->
+          <div class="pd__layout">
+
+            <!-- Gallery -->
+            <div class="pd__gallery">
+              <div class="pd__thumbs" id="pd-thumbs" role="list" aria-label="Imágenes del producto"></div>
+              <div class="pd__main-img-wrap">
+                <img class="pd__main-img" id="pd-main-img" src="" alt="" loading="lazy" />
+              </div>
+            </div>
+
+            <!-- Info: título, precio, descripción corta -->
+            <div class="pd__info">
+              <p class="pd__condition">Nuevo | <span id="pd-sold"></span></p>
+              <h1 class="pd__title" id="pd-title"></h1>
+              <div class="pd__rating-row">
+                <span class="pd__stars" id="pd-stars" aria-hidden="true"></span>
+                <span class="pd__rating-num" id="pd-rating-num"></span>
+                <span class="pd__rating-sep" aria-hidden="true">|</span>
+                <a href="#pd-reviews" class="pd__reviews-link"><span id="pd-review-count"></span> opiniones</a>
+              </div>
+
+              <div class="pd__pricing">
+                <p class="pd__original-price" id="pd-original-price"></p>
+                <div class="pd__price-row">
+                  <p class="pd__price" id="pd-price"></p>
+                  <span class="pd__discount-badge" id="pd-discount-badge"></span>
+                </div>
+                <p class="pd__installments" id="pd-installments"></p>
+              </div>
+
+              <div class="pd__guarantees">
+                <div class="pd__guarantee-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00a650" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>Compra Protegida, recibe el producto que esperabas o te devolvemos tu dinero.</span>
+                </div>
+                <div class="pd__guarantee-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00a650" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/></svg>
+                  <span>Devolución gratis. Tienes 30 días desde que lo recibes.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sidebar: tarjeta de compra (envío, stock, qty, botones, vendedor) -->
+            <aside class="pd__sidebar">
+              <!-- Shipping y stock van acá -->
+              <div class="pd__shipping-block" id="pd-shipping-block"></div>
+              <div class="pd__stock-block" id="pd-stock-block"></div>
+
+              <!-- Qty -->
+              <div class="pd__qty-row">
+                <span class="pd__qty-label">Cantidad:</span>
+                <div class="pd__qty-ctrl">
+                  <button type="button" class="pd__qty-btn" id="pd-qty-minus" aria-label="Disminuir">−</button>
+                  <span class="pd__qty-num" id="pd-qty-num">1</span>
+                  <button type="button" class="pd__qty-btn" id="pd-qty-plus" aria-label="Aumentar">+</button>
+                </div>
+                <span class="pd__qty-avail" id="pd-qty-avail"></span>
+              </div>
+
+              <!-- Botones de compra -->
+              <div class="pd__actions">
+                <button type="button" class="pd__btn pd__btn--buy">Comprar ahora</button>
+                <button type="button" class="pd__btn pd__btn--cart">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:-2px;margin-right:5px" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                  Agregar al carrito
+                </button>
+              </div>
+
+              <!-- Vendedor -->
+              <div class="pd__seller-card">
+                <p class="pd__seller-label">Vendido por</p>
+                <p class="pd__seller-name" id="pd-brand"></p>
+                <div class="pd__seller-rep">
+                  <span class="pd__seller-score">★ 4.9</span>
+                  <span class="pd__seller-level">MercadoLíder</span>
+                </div>
+                <ul class="pd__seller-features">
+                  <li>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00a650" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                    +100 ventas
+                  </li>
+                  <li>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00a650" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                    Devolución gratis
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Medios de pago -->
+              <div class="pd__payment-card">
+                <p class="pd__payment-title">Medios de pago</p>
+                <p class="pd__payment-sub">💳 Tarjetas de crédito y débito</p>
+                <p class="pd__payment-sub" id="pd-payment-text"></p>
+                <hr class="pd__payment-divider" />
+                <p class="pd__payment-sub">🏦 Efectivo</p>
+                <p class="pd__payment-sub">📱 Mercado Pago</p>
+              </div>
+            </aside>
+          </div>
+
+          <!-- Description + Specs -->
+          <div class="pd__details-grid">
+            <section class="pd__desc-section">
+              <h2 class="pd__section-title">Descripción</h2>
+              <p class="pd__desc" id="pd-desc"></p>
+              <div class="pd__extra-specs" id="pd-extra-specs"></div>
+            </section>
+            <section class="pd__specs-section">
+              <h2 class="pd__section-title">Características principales</h2>
+              <table class="pd__specs-table" id="pd-specs-table"></table>
+            </section>
+          </div>
+
+          <!-- Reviews -->
+          <section class="pd__reviews-section" id="pd-reviews">
+            <h2 class="pd__section-title">Opiniones del producto</h2>
+            <div class="pd__reviews-summary" id="pd-reviews-summary"></div>
+            <div class="pd__reviews-list" id="pd-reviews-list"></div>
+          </section>
+        </div>
+      </div>
+
+      <section
+        id="view-dev1"
+        class="view pf2"
+        data-view="dev1"
+        hidden
+      >
+        <!-- ── HERO ── -->
+        <section class="pf2-hero">
+          <div class="pf2-hero__stripe" aria-hidden="true"></div>
+          <div class="pf2__inner">
+            <div class="pf2-hero__avatar-wrap">
+              <img
+                src="https://github.com/lxiscxstillo.png"
+                alt="Luis Castillo profile photo"
+                class="pf2-hero__avatar"
+              />
+              <span class="pf2-hero__avatar-ring" aria-hidden="true"></span>
+            </div>
+
+            <div class="pf2-hero__badge">Estudiante de Ingeniería</div>
+
+            <h1 class="pf2-hero__name">
+              Luis <span>Castillo</span>
+              <span class="pf2-hero__alias">@Dev1 · Software Engineer</span>
+            </h1>
+
+            <p class="pf2-hero__title">
+              Estudiante de Ingeniería con énfasis en desarrollo de software, tecnologías interactivas
+              y arquitectura de sistemas. Experiencia en investigación aplicada, desarrollo web moderno
+              y sistemas interactivos. Con bases sólidas en modelado de datos, arquitectura de software
+              y control de versiones.
+            </p>
+
+            <div class="pf2-hero__actions">
+              <a
+                href="https://github.com/lxiscxstillo"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pf2-btn pf2-btn--primary"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                Ver repositorios
+              </a>
+              <a href="mailto:luisestebancastillopedroza90@gmail.com" class="pf2-btn pf2-btn--blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Contactar
+              </a>
+            </div>
+
+            <div class="pf2-hero__stats">
+              <div class="pf2-stat">
+                <span class="pf2-stat__num">1+</span>
+                <span class="pf2-stat__label">Años de experiencia investigativa</span>
+              </div>
+              <div class="pf2-stat">
+                <span class="pf2-stat__num">3+</span>
+                <span class="pf2-stat__label">Proyectos completados</span>
+              </div>
+              <div class="pf2-stat">
+                <span class="pf2-stat__num">7</span>
+                <span class="pf2-stat__label">Tecnologías dominadas</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── PERFIL PROFESIONAL ── -->
+        <div class="pf2__inner">
+          <section class="pf2-section">
+            <h2 class="pf2-section__label">Acerca de</h2>
+            <h3 class="pf2-section__title">Perfil Profesional</h3>
+            <p class="pf2-section__desc">
+              Estudiante de Ingeniería con énfasis en desarrollo de software, tecnologías interactivas
+              y arquitectura de sistemas. Experiencia en investigación aplicada dentro de la Universidad
+              Cooperativa de Colombia, participando en el diseño y desarrollo de un simulador en realidad
+              aumentada orientado a la enseñanza del desarrollo fetal en estudiantes de medicina.
+            </p>
+            <p class="pf2-section__desc">
+              Interesado en el desarrollo de aplicaciones web modernas, soluciones multiplataforma y
+              sistemas interactivos con enfoque en experiencia de usuario. Con bases sólidas en modelado
+              de datos, diseño de bases de datos relacionales, principios de arquitectura de software y
+              control de versiones.
+            </p>
+          </section>
+
+          <!-- ── SKILLS & TECHNOLOGIES ── -->
+          <section class="pf2-section">
+            <h2 class="pf2-section__label">Stack Técnico</h2>
+            <h3 class="pf2-section__title">Skills &amp; Technologies</h3>
+            
+            <div class="pf2-stack">
+              <div class="pf2-stack__group">
+                <h4 class="pf2-stack__group-label">Lenguajes de Programación</h4>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag">JavaScript</span>
+                  <span class="pf2-tag">SQL</span>
+                </div>
+              </div>
+
+              <div class="pf2-stack__group">
+                <h4 class="pf2-stack__group-label">Tecnologías &amp; Frameworks</h4>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag">Next.js</span>
+                  <span class="pf2-tag">TailwindCSS</span>
+                  <span class="pf2-tag">Unity</span>
+                </div>
+              </div>
+
+              <div class="pf2-stack__group">
+                <h4 class="pf2-stack__group-label">Bases de Datos</h4>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag">PostgreSQL</span>
+                </div>
+              </div>
+
+              <div class="pf2-stack__group">
+                <h4 class="pf2-stack__group-label">Control de Versiones</h4>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag">Git</span>
+                  <span class="pf2-tag">GitHub</span>
+                </div>
+              </div>
+
+              <div class="pf2-stack__group">
+                <h4 class="pf2-stack__group-label">Conceptos</h4>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag">Arquitectura de software</span>
+                  <span class="pf2-tag">POO</span>
+                  <span class="pf2-tag">Responsive Design</span>
+                  <span class="pf2-tag">Integración de Sistemas</span>
+                  <span class="pf2-tag">Modelado Relacional</span>
+                  <span class="pf2-tag">Normalización BD</span>
+                  <span class="pf2-tag">Ciclo de Vida SDLC</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ── EXPERIENCIA EN INVESTIGACIÓN ── -->
+          <section class="pf2-section">
+            <h2 class="pf2-section__label">Trayectoria</h2>
+            <h3 class="pf2-section__title">Experiencia en Investigación</h3>
+            
+            <article class="pf2-service-card" style="grid-column: 1 / -1; margin-top: 24px;">
+              <h4 class="pf2-service-card__title">Desarrollador de Software</h4>
+              <p style="margin: 6px 0 12px; color: var(--pf-sub); font-size: 13px;">
+                Semillero de Investigación · Universidad Cooperativa de Colombia
+              </p>
+              <p style="margin: 0 0 12px; color: var(--pf-text); font-size: 13px; font-weight: 600;">
+                Proyecto: Simulador de Desarrollo Fetal en Realidad Aumentada
+              </p>
+              <ul style="margin: 0; padding-left: 16px; font-size: 13px; color: var(--pf-text); line-height: 1.6;">
+                <li style="margin-bottom: 6px;">Desarrollo del entorno interactivo en Unity.</li>
+                <li style="margin-bottom: 6px;">Programación de simulaciones dinámicas del desarrollo fetal.</li>
+                <li style="margin-bottom: 6px;">Modelado de variables y estados del desarrollo fetal.</li>
+                <li style="margin-bottom: 6px;">Definición de la arquitectura del proyecto en el motor gráfico.</li>
+                <li style="margin-bottom: 6px;">Aplicación de TIC para educación médica en contextos universitarios.</li>
+                <li style="margin-bottom: 6px;">Adaptación técnica de contenido médico a componentes interactivos.</li>
+                <li>Pruebas funcionales y mejoras de usabilidad en el simulador.</li>
+              </ul>
+            </article>
+          </section>
+
+          <!-- ── PROYECTOS DESTACADOS ── -->
+          <section class="pf2-section">
+            <h2 class="pf2-section__label">Portafolio</h2>
+            <h3 class="pf2-section__title">Proyectos Destacados</h3>
+            
+            <div class="pf2-services">
+              <article class="pf2-service-card">
+                <h4 class="pf2-service-card__title">Simulador AR Fetal</h4>
+                <ul style="margin: 0; padding-left: 16px; font-size: 13px; color: var(--pf-text); line-height: 1.6;">
+                  <li style="margin-bottom: 4px;">Experiencia inmersiva en Unity</li>
+                  <li style="margin-bottom: 4px;">Modelos fetales en tiempo real</li>
+                  <li style="margin-bottom: 4px;">Arquitectura modular</li>
+                  <li>Enfoque pedagógico médico</li>
+                </ul>
+              </article>
+
+              <article class="pf2-service-card">
+                <h4 class="pf2-service-card__title">Web Applications</h4>
+                <ul style="margin: 0; padding-left: 16px; font-size: 13px; color: var(--pf-text); line-height: 1.6;">
+                  <li style="margin-bottom: 4px;">HTML5 &amp; CSS3</li>
+                  <li style="margin-bottom: 4px;">Next.js moderno</li>
+                  <li style="margin-bottom: 4px;">TailwindCSS responsive</li>
+                  <li>UX &amp; Accesibilidad</li>
+                </ul>
+              </article>
+
+              <article class="pf2-service-card">
+                <h4 class="pf2-service-card__title">Database Design</h4>
+                <ul style="margin: 0; padding-left: 16px; font-size: 13px; color: var(--pf-text); line-height: 1.6;">
+                  <li style="margin-bottom: 4px;">Modelos E-R</li>
+                  <li style="margin-bottom: 4px;">Normalización 3FN</li>
+                  <li style="margin-bottom: 4px;">PostgreSQL integridad</li>
+                  <li>DDL estructuras</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <!-- ── FORMACIÓN ACADÉMICA ── -->
+          <section class="pf2-section">
+            <h2 class="pf2-section__label">Educación</h2>
+            <h3 class="pf2-section__title">Formación Académica</h3>
+            
+            <p style="margin: 0 0 10px; font-weight: 600; color: var(--pf-text); font-size: 14px;">
+              Ingeniería de Software / Ingeniería de Sistemas (En curso)
+            </p>
+            <p style="margin: 0 0 20px; color: var(--pf-sub); font-size: 13px;">
+              Universidad Cooperativa de Colombia · Colombia
+            </p>
+            
+            <div class="pf2-stack__tags">
+              <span class="pf2-tag">Prog. &amp; Estructuras</span>
+              <span class="pf2-tag">BD Relacionales</span>
+              <span class="pf2-tag">Ing. de Software</span>
+              <span class="pf2-tag">Arquitectura CPU</span>
+              <span class="pf2-tag">Gestión Proyectos</span>
+              <span class="pf2-tag">Modelado Sistemas</span>
+              <span class="pf2-tag">Desarrollo Web</span>
+            </div>
+          </section>
+
+          <!-- ── COMPETENCIAS PROFESIONALES ── -->
+          <section class="pf2-section">
+            <h2 class="pf2-section__label">Aptitudes</h2>
+            <h3 class="pf2-section__title">Competencias Profesionales</h3>
+            
+            <div class="pf2-stack__tags">
+              <span class="pf2-tag">Análisis de Problemas</span>
+              <span class="pf2-tag">Traducción Requerimientos</span>
+              <span class="pf2-tag">Trabajo Colaborativo</span>
+              <span class="pf2-tag">Comunicación Multidisciplinar</span>
+              <span class="pf2-tag">Investigación Tecnológica</span>
+              <span class="pf2-tag">Aprendizaje Autónomo</span>
+              <span class="pf2-tag">Mejora Continua</span>
+              <span class="pf2-tag">Gestión del Tiempo</span>
+            </div>
+          </section>
+
+          <!-- ── CONTACTO ── -->
+          <section class="pf2-cta">
+            <h3 class="pf2-cta__title">¿Listo para colaborar?</h3>
+            <p class="pf2-cta__desc">
+              Contáctame a través de cualquiera de estos canales para discutir ideas, proyectos o
+              cualquier oportunidad de colaboración.
+            </p>
+            <div class="pf2-cta__actions">
+              <a href="tel:+573137555023" class="pf2-btn pf2-btn--primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="width: 18px; height: 18px;">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                +57 313 7555023
+              </a>
+              <a href="https://linkedin.com/in/tuusuario" target="_blank" rel="noopener noreferrer" class="pf2-btn pf2-btn--blue">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width: 18px; height: 18px;">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section
+        id="view-dev2"
+        class="view pf2"
+        data-view="dev2"
+        hidden
+      >
+        <!-- ── HERO ── -->
+        <section class="pf2-hero">
+          <div class="pf2-hero__stripe" aria-hidden="true"></div>
+          <div class="pf2__inner">
+            <div class="pf2-hero__avatar-wrap">
+              <img
+                src="https://avatars.githubusercontent.com/u/177950699?s=400&u=4242224e94fed8f2f84511e732d3173299f71601&v=4"
+                alt="Matheu — Johnatan Matheu Ruales Galvis"
+                class="pf2-hero__avatar"
+              />
+              <span class="pf2-hero__avatar-ring" aria-hidden="true"></span>
+            </div>
+
+            <div class="pf2-hero__badge">Disponible para proyectos</div>
+
+            <h1 class="pf2-hero__name">
+              Johnatan <span>Matheu</span> Ruales
+              <span class="pf2-hero__alias">@Matheu · Dev2</span>
+            </h1>
+
+            <p class="pf2-hero__title">
+              Ingeniero de Software en formación (UCC – Pasto). Desarrollador full-stack
+              y builder de productos con IA: agentes conversacionales para ventas y lead
+              qualification, automatizaciones y sistemas web. Enfocado en llevar ideas a
+              producción con buenas prácticas de arquitectura, UX y despliegue.
+            </p>
+
+            <div class="pf2-hero__actions">
+              <a
+                href="https://github.com/matheuruales?tab=repositories"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pf2-btn pf2-btn--primary"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                Ver repositorios
+              </a>
+              <a href="mailto:contacto@matheu.dev" class="pf2-btn pf2-btn--blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Contactar
+              </a>
+            </div>
+
+            <div class="pf2-hero__stats">
+              <div class="pf2-stat">
+                <span class="pf2-stat__num">3+</span>
+                <span class="pf2-stat__label">Años de experiencia</span>
+              </div>
+              <div class="pf2-stat">
+                <span class="pf2-stat__num">15+</span>
+                <span class="pf2-stat__label">Proyectos entregados</span>
+              </div>
+              <div class="pf2-stat">
+                <span class="pf2-stat__num">6</span>
+                <span class="pf2-stat__label">Servicios ofrecidos</span>
+              </div>
+              <div class="pf2-stat">
+                <span class="pf2-stat__num">20+</span>
+                <span class="pf2-stat__label">Tecnologías dominadas</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── SERVICIOS ── -->
+        <section class="pf2-section">
+          <div class="pf2__inner">
+            <span class="pf2-section__label">Lo que hago</span>
+            <h2 class="pf2-section__title">Servicios</h2>
+            <p class="pf2-section__desc">Soluciones end-to-end desde el diseño hasta el despliegue en producción.</p>
+
+            <div class="pf2-services">
+
+              <div class="pf2-service-card">
+                <div class="pf2-service-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+                  </svg>
+                </div>
+                <h3 class="pf2-service-card__title">Desarrollo Full-Stack</h3>
+                <p class="pf2-service-card__desc">Apps web, APIs REST, dashboards interactivos y portales desde cero con arquitectura escalable.</p>
+              </div>
+
+              <div class="pf2-service-card">
+                <div class="pf2-service-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                  </svg>
+                </div>
+                <h3 class="pf2-service-card__title">Integración de IA / LLMs</h3>
+                <p class="pf2-service-card__desc">Agentes conversacionales, RAG, flujos multi-agente, scoring de leads y prompts de producción.</p>
+              </div>
+
+              <div class="pf2-service-card">
+                <div class="pf2-service-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                  </svg>
+                </div>
+                <h3 class="pf2-service-card__title">Automatizaciones</h3>
+                <p class="pf2-service-card__desc">Flujos con n8n, webhooks, pipelines y conexiones con CRM, redes sociales y herramientas de negocio.</p>
+              </div>
+
+              <div class="pf2-service-card">
+                <div class="pf2-service-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+                  </svg>
+                </div>
+                <h3 class="pf2-service-card__title">Despliegue y DevOps</h3>
+                <p class="pf2-service-card__desc">Docker, servidores cloud (AWS EC2, Vercel), entornos de producción y CI simple con GitHub Actions.</p>
+              </div>
+
+              <div class="pf2-service-card">
+                <div class="pf2-service-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                  </svg>
+                </div>
+                <h3 class="pf2-service-card__title">UX/UI y Landing Pages</h3>
+                <p class="pf2-service-card__desc">Prototipado, diseño de interfaces de alto impacto y landing pages de conversión que convierten.</p>
+              </div>
+
+              <div class="pf2-service-card">
+                <div class="pf2-service-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                  </svg>
+                </div>
+                <h3 class="pf2-service-card__title">Integración de Mensajería</h3>
+                <p class="pf2-service-card__desc">WhatsApp, TikTok, Chatwoot y Twilio para captación y calificación de leads en tiempo real.</p>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ── TECH STACK ── -->
+        <section class="pf2-section">
+          <div class="pf2__inner">
+            <span class="pf2-section__label">Tecnologías</span>
+            <h2 class="pf2-section__title">Stack técnico</h2>
+            <p class="pf2-section__desc">Herramientas que uso en el día a día para llevar proyectos de la idea a producción.</p>
+
+            <div class="pf2-stack">
+              <div class="pf2-stack__group">
+                <p class="pf2-stack__group-label">Frontend</p>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#61dafb"></span>React</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#333"></span>Next.js</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#3178c6"></span>TypeScript</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#38bdf8"></span>Tailwind CSS</span>
+                </div>
+              </div>
+              <div class="pf2-stack__group">
+                <p class="pf2-stack__group-label">Backend</p>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#009688"></span>Python / FastAPI</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#6db33f"></span>Java / Spring Boot</span>
+                </div>
+              </div>
+              <div class="pf2-stack__group">
+                <p class="pf2-stack__group-label">Bases de datos</p>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#336791"></span>PostgreSQL</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#3ecf8e"></span>Supabase / Neon</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#f5a623"></span>Firebase / Firestore</span>
+                </div>
+              </div>
+              <div class="pf2-stack__group">
+                <p class="pf2-stack__group-label">IA / Agentes</p>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#1c3c3c"></span>LangGraph</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#1c3c3c"></span>LangChain</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#3483fa"></span>Prompt Engineering</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#3483fa"></span>RAG / Flujos multi-agente</span>
+                </div>
+              </div>
+              <div class="pf2-stack__group">
+                <p class="pf2-stack__group-label">Infra / Tools</p>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#2496ed"></span>Docker</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#f05032"></span>Git / GitHub / GitLab</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#ff9900"></span>AWS EC2</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#333"></span>Vercel</span>
+                </div>
+              </div>
+              <div class="pf2-stack__group">
+                <p class="pf2-stack__group-label">Automatización</p>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#ef4444"></span>n8n</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#00a650"></span>Webhooks</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#3483fa"></span>APIs de terceros</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#25d366"></span>WhatsApp / Twilio</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── CTA FINAL ── -->
+        <div class="pf2__inner">
+          <div class="pf2-cta">
+            <h2 class="pf2-cta__title">¿Tienes un proyecto en mente?</h2>
+            <p class="pf2-cta__desc">Hablemos. Llevo ideas a producción rápido, con buenas prácticas y sin vueltas.</p>
+            <div class="pf2-cta__actions">
+              <a
+                href="https://github.com/matheuruales?tab=repositories"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pf2-btn pf2-btn--primary"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                Ver repositorios en GitHub
+              </a>
+              <a href="mailto:contacto@matheu.dev" class="pf2-btn pf2-btn--blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Contactar
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <section
+        id="view-dev3"
+        class="view pf2"
+        data-view="dev3"
+        hidden
+      >
+        <section class="pf2-hero">
+          <div class="pf2-hero__stripe" aria-hidden="true"></div>
+          <div class="pf2__inner">
+            <div class="pf2-hero__avatar-wrap">
+              <img
+                src="https://github.com/FelipeJaramillo514.png"
+                alt="Bayron Felipe Jaramillo Galindres"
+                class="pf2-hero__avatar"
+              />
+              <span class="pf2-hero__avatar-ring" aria-hidden="true"></span>
+            </div>
+
+            <div class="pf2-hero__badge">Disponible para proyectos</div>
+
+            <h1 class="pf2-hero__name">
+              Bayron Felipe <span>Jaramillo</span> Galindres
+              <span class="pf2-hero__alias">@FelipeJaramillo514 · Dev3</span>
+            </h1>
+
+            <p class="pf2-hero__title">
+              Estudiante de Ingenieria de Software en la Universidad Cooperativa de Colombia
+              (5 semestre, Campus Pasto), con orientacion tecnica y analitica hacia la
+              resolucion de problemas y la integracion de buenas practicas de desarrollo.
+              Combina experiencia en gestion administrativa y operativa con alta capacidad
+              de adaptacion a nuevas tecnologias.
+            </p>
+
+            <div class="pf2-hero__actions">
+              <a
+                href="https://github.com/FelipeJaramillo514"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pf2-btn pf2-btn--primary"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                Ver repositorios
+              </a>
+              <a
+                href="https://github.com/FelipeJaramillo514"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pf2-btn pf2-btn--blue"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Perfil GitHub
+              </a>
+            </div>
+
+            <div class="pf2-hero__stats">
+              <div class="pf2-stat">
+                <span class="pf2-stat__num">5°</span>
+                <span class="pf2-stat__label">Semestre actual</span>
+              </div>
+              <div class="pf2-stat">
+                <span class="pf2-stat__num">6</span>
+                <span class="pf2-stat__label">Servicios ofrecidos</span>
+              </div>
+              <div class="pf2-stat">
+                <span class="pf2-stat__num">18+</span>
+                <span class="pf2-stat__label">Tecnologias usadas</span>
+              </div>
+              <div class="pf2-stat">
+                <span class="pf2-stat__num">Pasto</span>
+                <span class="pf2-stat__label">Narino, Colombia</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pf2-section">
+          <div class="pf2__inner">
+            <span class="pf2-section__label">Lo que hago</span>
+            <h2 class="pf2-section__title">Servicios</h2>
+            <p class="pf2-section__desc">Soluciones practicas enfocadas en desarrollo, simulacion e integracion tecnologica.</p>
+
+            <div class="pf2-services">
+              <div class="pf2-service-card">
+                <div class="pf2-service-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+                  </svg>
+                </div>
+                <h3 class="pf2-service-card__title">Aplicaciones web</h3>
+                <p class="pf2-service-card__desc">Desarrollo frontend y logica basica de backend para productos funcionales y escalables.</p>
+              </div>
+
+              <div class="pf2-service-card">
+                <div class="pf2-service-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                  </svg>
+                </div>
+                <h3 class="pf2-service-card__title">Python y simulaciones</h3>
+                <p class="pf2-service-card__desc">Scripts, analisis de datos y visualizacion con Python para procesos academicos o de negocio.</p>
+              </div>
+
+              <div class="pf2-service-card">
+                <div class="pf2-service-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                  </svg>
+                </div>
+                <h3 class="pf2-service-card__title">Arduino interactivo</h3>
+                <p class="pf2-service-card__desc">Experiencias con electronica y sensores aplicadas a prototipos funcionales.</p>
+              </div>
+
+              <div class="pf2-service-card">
+                <div class="pf2-service-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                  </svg>
+                </div>
+                <h3 class="pf2-service-card__title">Prototipos VR con Unity</h3>
+                <p class="pf2-service-card__desc">Diseno y desarrollo de experiencias inmersivas orientadas a validacion rapida.</p>
+              </div>
+
+              <div class="pf2-service-card">
+                <div class="pf2-service-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+                  </svg>
+                </div>
+                <h3 class="pf2-service-card__title">Bases de datos SQLite</h3>
+                <p class="pf2-service-card__desc">Gestion, mantenimiento y organizacion de datos para aplicaciones ligeras y robustas.</p>
+              </div>
+
+              <div class="pf2-service-card">
+                <div class="pf2-service-card__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                  </svg>
+                </div>
+                <h3 class="pf2-service-card__title">Gestion agil de proyectos</h3>
+                <p class="pf2-service-card__desc">Soporte operativo con Azure Boards para seguimiento de tareas y entregas.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pf2-section">
+          <div class="pf2__inner">
+            <span class="pf2-section__label">Tecnologias</span>
+            <h2 class="pf2-section__title">Stack tecnico</h2>
+            <p class="pf2-section__desc">Herramientas que utilizo en desarrollo web, datos, simulacion y sistemas interactivos.</p>
+
+            <div class="pf2-stack">
+              <div class="pf2-stack__group">
+                <p class="pf2-stack__group-label">Lenguajes y Web</p>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#3776ab"></span>Python</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#f89820"></span>Java</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#e34f26"></span>HTML5</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#1572b6"></span>CSS3</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#f7df1e"></span>JavaScript</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#0c4b33"></span>Django</span>
+                </div>
+              </div>
+
+              <div class="pf2-stack__group">
+                <p class="pf2-stack__group-label">Datos y BD</p>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#150458"></span>Pandas</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#013243"></span>NumPy</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#003b57"></span>SQLite</span>
+                </div>
+              </div>
+
+              <div class="pf2-stack__group">
+                <p class="pf2-stack__group-label">Herramientas y DevOps</p>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#f05032"></span>Git</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#24292e"></span>GitHub</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#2496ed"></span>Docker</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#2560e0"></span>Azure Boards</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#007acc"></span>Visual Studio Code</span>
+                </div>
+              </div>
+
+              <div class="pf2-stack__group">
+                <p class="pf2-stack__group-label">3D e Interactivos</p>
+                <div class="pf2-stack__tags">
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#000000"></span>Unity</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#f5792a"></span>Blender</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#1e293b"></span>Oculus Rift / Meta Quest</span>
+                  <span class="pf2-tag"><span class="pf2-tag__dot" style="background:#00979d"></span>Arduino Uno</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="pf2__inner">
+          <div class="pf2-cta">
+            <h2 class="pf2-cta__title">Construyamos tu proximo proyecto</h2>
+            <p class="pf2-cta__desc">Ubicacion: Pasto, Narino, Colombia. Disponible para colaboraciones y desarrollo de soluciones personalizadas.</p>
+            <div class="pf2-cta__actions">
+              <a
+                href="https://github.com/FelipeJaramillo514"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pf2-btn pf2-btn--primary"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+                Ver GitHub
+              </a>
+              <a
+                href="https://github.com/FelipeJaramillo514"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pf2-btn pf2-btn--blue"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Perfil GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <script src="./src/presentation/scripts/main.js" type="module"></script>
+    <!-- ══ SERVICIOS ══ -->
+    <section class="services" aria-label="Por qué comprar con nosotros">
+      <div class="services__inner">
+        <h2 class="services__heading">¿Por qué comprar en Mercado Libre?</h2>
+        <div class="services__grid">
+
+          <div class="service-card">
+            <div class="service-card__icon service-card__icon--shield">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2L4 5v6c0 5.25 3.4 10.15 8 11.35C16.6 21.15 20 16.25 20 11V5l-8-3z" fill="currentColor" opacity=".15"/>
+                <path d="M12 2L4 5v6c0 5.25 3.4 10.15 8 11.35C16.6 21.15 20 16.25 20 11V5l-8-3z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="service-card__text">
+              <p class="service-card__title">Compra protegida</p>
+              <p class="service-card__desc">Recibe el producto que esperabas o te devolvemos tu dinero.</p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card__icon service-card__icon--truck">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="1" y="7" width="15" height="11" rx="1.5" fill="currentColor" opacity=".12"/>
+                <rect x="1" y="7" width="15" height="11" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M16 10h3.4a1 1 0 01.8.4l2.4 3.2a1 1 0 01.2.6V17a1 1 0 01-1 1h-5.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="5.5" cy="18.5" r="1.8" fill="currentColor"/>
+                <circle cx="18.5" cy="18.5" r="1.8" fill="currentColor"/>
+                <path d="M7.5 10H12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="service-card__text">
+              <p class="service-card__title">Envíos a todo el país</p>
+              <p class="service-card__desc">Recibe en la puerta de tu casa o retira en puntos cercanos.</p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card__icon service-card__icon--card">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="2" y="5" width="20" height="14" rx="2" fill="currentColor" opacity=".12"/>
+                <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M2 9h20" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M6 14h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="service-card__text">
+              <p class="service-card__title">Cuotas sin interés</p>
+              <p class="service-card__desc">Paga en 3, 6, 9 o 12 cuotas sin interés con tu tarjeta.</p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card__icon service-card__icon--return">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" fill="currentColor" opacity=".12"/>
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M8 12a4 4 0 014-4h1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M15 8l2 2-2 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 12a4 4 0 01-4 4h-1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M9 16l-2-2 2-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="service-card__text">
+              <p class="service-card__title">Devoluciones gratis</p>
+              <p class="service-card__desc">¿No te gustó? Devuelve el producto sin costo adicional.</p>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card__icon service-card__icon--lock">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="5" y="11" width="14" height="10" rx="2" fill="currentColor" opacity=".12"/>
+                <rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M8 11V7a4 4 0 018 0v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="service-card__text">
+              <p class="service-card__title">Pago 100% seguro</p>
+              <p class="service-card__desc">Tus datos personales y de pago están siempre protegidos.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer class="ml-footer" role="contentinfo">
+      <div class="ml-footer__top">
+        <div class="ml-footer__inner">
+
+          <div class="ml-footer__col">
+            <h3 class="ml-footer__col-title">Acerca de</h3>
+            <ul class="ml-footer__list">
+              <li><a href="#">Acerca de Mercado Libre</a></li>
+              <li><a href="#">Noticias</a></li>
+              <li><a href="#">Relaciones con inversores</a></li>
+              <li><a href="#">Sustentabilidad</a></li>
+              <li><a href="#">Trabaja con nosotros</a></li>
+              <li><a href="#">Prensa</a></li>
+            </ul>
+          </div>
+
+          <div class="ml-footer__col">
+            <h3 class="ml-footer__col-title">Otros sitios</h3>
+            <ul class="ml-footer__list">
+              <li><a href="#">Mercado Pago</a></li>
+              <li><a href="#">Mercado Envíos</a></li>
+              <li><a href="#">Mercado Ads</a></li>
+              <li><a href="#">Mercado Shops</a></li>
+              <li><a href="#">Mercado Play</a></li>
+              <li><a href="#">Desarrolladores</a></li>
+            </ul>
+          </div>
+
+          <div class="ml-footer__col">
+            <h3 class="ml-footer__col-title">Pagos y envíos</h3>
+            <ul class="ml-footer__list">
+              <li><a href="#">Medios de pago</a></li>
+              <li><a href="#">Cuotas sin interés</a></li>
+              <li><a href="#">Puntos de retiro</a></li>
+              <li><a href="#">Cómo comprar</a></li>
+              <li><a href="#">Cómo vender</a></li>
+              <li><a href="#">Garantías</a></li>
+            </ul>
+          </div>
+
+          <div class="ml-footer__col">
+            <h3 class="ml-footer__col-title">Ayuda</h3>
+            <ul class="ml-footer__list">
+              <li><a href="#">Centro de ayuda</a></li>
+              <li><a href="#">Resolución de problemas</a></li>
+              <li><a href="#">Reportar seguridad</a></li>
+              <li><a href="#">Compras y devoluciones</a></li>
+              <li><a href="#">Cuenta y acceso</a></li>
+            </ul>
+          </div>
+
+          <div class="ml-footer__col">
+            <h3 class="ml-footer__col-title">Síguenos</h3>
+            <ul class="ml-footer__social">
+              <li>
+                <a href="#" class="ml-footer__social-link" aria-label="Facebook">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a href="#" class="ml-footer__social-link" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a href="#" class="ml-footer__social-link" aria-label="Twitter / X">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  X (Twitter)
+                </a>
+              </li>
+              <li>
+                <a href="#" class="ml-footer__social-link" aria-label="YouTube">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+                  YouTube
+                </a>
+              </li>
+            </ul>
+
+            <div class="ml-footer__app">
+              <p class="ml-footer__app-label">Descarga la app</p>
+              <div class="ml-footer__app-badges">
+                <a href="#" class="ml-footer__app-btn">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.37c1.3.07 2.19.74 2.97.8.95-.19 1.87-.91 2.97-.84 1.27.07 2.2.6 2.8 1.5-2.45 1.49-1.87 4.7.36 5.68-.43 1.1-.98 2.2-1.1 5.77zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                  App Store
+                </a>
+                <a href="#" class="ml-footer__app-btn">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M3.18 23.76a2 2 0 001.97-.22l11.12-6.42-2.3-2.3-10.79 8.94zM20.5 10.43L17.4 8.6 14.86 11l2.55 2.55 3.09-1.85a1.65 1.65 0 000-2.87v-.4zM2.01.5A1.63 1.63 0 001 1.95v20.1a1.63 1.63 0 001.01 1.45l.12.06L14.2 12 2.13.44l-.12.06zM15.15 12l-2.3-2.3-9.67-9.64 11.12 6.42 .85 5.52z"/></svg>
+                  Google Play
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="ml-footer__bottom">
+        <div class="ml-footer__bottom-inner">
+          <p class="ml-footer__copy">
+            Copyright © 2025 <strong>Mercado Libre Colombia S.A.S.</strong>
+          </p>
+          <nav class="ml-footer__legal" aria-label="Legal">
+            <a href="#">Términos y condiciones</a>
+            <a href="#">Cómo cuidamos tu privacidad</a>
+            <a href="#">Accesibilidad</a>
+            <a href="#">Información al consumidor</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./src/presentation/scripts/main.js"></script>
   </body>
 </html>
