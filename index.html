@@ -192,12 +192,250 @@
         data-view="dev1"
         hidden
       >
-        <header class="dev-portfolio__header">
-          <h1 class="dev-portfolio__title">Developer Portfolio Placeholder</h1>
-          <p class="dev-portfolio__subtitle">
-            This space will contain the portfolio of Dev1.
-          </p>
+        <header class="dev-portfolio__header dev-portfolio__hero">
+          <div class="dev-portfolio__hero-main">
+            <div class="dev-portfolio__avatar" aria-hidden="true">
+              <span class="dev-portfolio__avatar-initials">LC</span>
+            </div>
+            <div class="dev-portfolio__hero-text">
+              <p class="dev-portfolio__hero-tag">Portfolio profesional</p>
+              <h1 class="dev-portfolio__hero-name">Luis Castillo</h1>
+              <p class="dev-portfolio__hero-role">
+                Software Engineering Student | Web Developer | Interactive Technologies
+              </p>
+              <p class="dev-portfolio__hero-location">Colombia</p>
+              <div class="dev-portfolio__hero-actions">
+                <a
+                  href="https://github.com/lxiscxstillo"
+                  class="dev-portfolio__hero-btn dev-portfolio__hero-btn--primary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="https://linkedin.com/in/tuusuario"
+                  class="dev-portfolio__hero-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="mailto:luisestebancastillopedroza90@gmail.com"
+                  class="dev-portfolio__hero-btn"
+                >
+                  Email
+                </a>
+              </div>
+            </div>
+          </div>
         </header>
+
+        <div class="dev-portfolio__content">
+          <section class="dev-portfolio__section">
+            <h2 class="dev-portfolio__section-title">Perfil Profesional</h2>
+            <p class="dev-portfolio__paragraph">
+              Estudiante de Ingeniería con énfasis en desarrollo de software, tecnologías interactivas
+              y arquitectura de sistemas. Experiencia en investigación aplicada dentro de la Universidad
+              Cooperativa de Colombia, participando en el diseño y desarrollo de un simulador en realidad
+              aumentada orientado a la enseñanza del desarrollo fetal en estudiantes de medicina.
+            </p>
+            <p class="dev-portfolio__paragraph">
+              Interesado en el desarrollo de aplicaciones web modernas, soluciones multiplataforma y
+              sistemas interactivos con enfoque en experiencia de usuario. Con bases sólidas en modelado
+              de datos, diseño de bases de datos relacionales, principios de arquitectura de software y
+              control de versiones.
+            </p>
+          </section>
+
+          <section class="dev-portfolio__section">
+            <h2 class="dev-portfolio__section-title">Skills &amp; Technologies</h2>
+            <div class="dev-portfolio__skills-grid">
+              <article class="dev-portfolio__card">
+                <h3 class="dev-portfolio__card-title">Lenguajes de programación</h3>
+                <ul class="dev-portfolio__list">
+                  <li>JavaScript</li>
+                  <li>SQL</li>
+                </ul>
+              </article>
+
+              <article class="dev-portfolio__card">
+                <h3 class="dev-portfolio__card-title">Tecnologías &amp; Frameworks</h3>
+                <ul class="dev-portfolio__list">
+                  <li>Next.js</li>
+                  <li>TailwindCSS</li>
+                  <li>Unity</li>
+                </ul>
+              </article>
+
+              <article class="dev-portfolio__card">
+                <h3 class="dev-portfolio__card-title">Bases de datos</h3>
+                <ul class="dev-portfolio__list">
+                  <li>PostgreSQL</li>
+                </ul>
+              </article>
+
+              <article class="dev-portfolio__card">
+                <h3 class="dev-portfolio__card-title">Control de versiones</h3>
+                <ul class="dev-portfolio__list">
+                  <li>Git</li>
+                  <li>GitHub</li>
+                </ul>
+              </article>
+
+              <article class="dev-portfolio__card dev-portfolio__card--wide">
+                <h3 class="dev-portfolio__card-title">Conceptos</h3>
+                <ul class="dev-portfolio__list dev-portfolio__list--inline">
+                  <li>Arquitectura de software</li>
+                  <li>Programación orientada a objetos</li>
+                  <li>Responsive design</li>
+                  <li>Integración de sistemas</li>
+                  <li>Modelado relacional</li>
+                  <li>Normalización de bases de datos</li>
+                  <li>Gestión del ciclo de vida del software</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section class="dev-portfolio__section">
+            <h2 class="dev-portfolio__section-title">Experiencia en Investigación</h2>
+            <article class="dev-portfolio__experience-card">
+              <header class="dev-portfolio__experience-header">
+                <h3 class="dev-portfolio__experience-role">Desarrollador de Software</h3>
+                <p class="dev-portfolio__experience-meta">
+                  Semillero de Investigación · Universidad Cooperativa de Colombia
+                </p>
+              </header>
+              <div class="dev-portfolio__experience-body">
+                <p class="dev-portfolio__experience-project">
+                  Proyecto: Simulador de Desarrollo Fetal en Realidad Aumentada
+                </p>
+                <ul class="dev-portfolio__list">
+                  <li>Desarrollo del entorno interactivo en Unity.</li>
+                  <li>Programación de simulaciones dinámicas del desarrollo fetal.</li>
+                  <li>Modelado de variables y estados del desarrollo fetal.</li>
+                  <li>Definición de la arquitectura del proyecto en el motor gráfico.</li>
+                  <li>Aplicación de TIC para educación médica en contextos universitarios.</li>
+                  <li>Adaptación técnica de contenido médico a componentes interactivos.</li>
+                  <li>Pruebas funcionales y mejoras de usabilidad en el simulador.</li>
+                </ul>
+              </div>
+            </article>
+          </section>
+
+          <section class="dev-portfolio__section">
+            <h2 class="dev-portfolio__section-title">Proyectos Destacados</h2>
+            <div class="dev-portfolio__projects-grid">
+              <article class="dev-portfolio__card">
+                <h3 class="dev-portfolio__card-title">
+                  Simulador de Desarrollo Fetal en Realidad Aumentada
+                </h3>
+                <ul class="dev-portfolio__list">
+                  <li>Desarrollo de experiencia inmersiva en Unity.</li>
+                  <li>Interacción en tiempo real con modelos fetales.</li>
+                  <li>Arquitectura modular para facilitar extensión del contenido.</li>
+                  <li>Enfoque pedagógico para estudiantes de medicina.</li>
+                </ul>
+              </article>
+
+              <article class="dev-portfolio__card">
+                <h3 class="dev-portfolio__card-title">Web Applications Development</h3>
+                <ul class="dev-portfolio__list">
+                  <li>Construcción de interfaces con HTML5 y CSS3.</li>
+                  <li>Uso de Next.js para aplicaciones web modernas.</li>
+                  <li>Maquetación responsive con TailwindCSS.</li>
+                  <li>Buenas prácticas de accesibilidad y UX.</li>
+                </ul>
+              </article>
+
+              <article class="dev-portfolio__card">
+                <h3 class="dev-portfolio__card-title">Database Design &amp; Modeling</h3>
+                <ul class="dev-portfolio__list">
+                  <li>Diseño de modelos entidad–relación.</li>
+                  <li>Normalización de esquemas hasta 3FN.</li>
+                  <li>Definición de integridad referencial con PostgreSQL.</li>
+                  <li>Uso de comandos DDL para la creación de estructuras.</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section class="dev-portfolio__section">
+            <h2 class="dev-portfolio__section-title">Formación Académica</h2>
+            <p class="dev-portfolio__paragraph dev-portfolio__paragraph--strong">
+              Ingeniería de Software / Ingeniería de Sistemas (En curso)
+            </p>
+            <p class="dev-portfolio__paragraph">
+              Universidad Cooperativa de Colombia · Colombia
+            </p>
+            <ul class="dev-portfolio__list dev-portfolio__list--columns">
+              <li>Programación y estructuras de datos</li>
+              <li>Bases de datos relacionales</li>
+              <li>Ingeniería de software</li>
+              <li>Arquitectura del computador</li>
+              <li>Gestión de proyectos</li>
+              <li>Modelado de sistemas</li>
+              <li>Desarrollo web</li>
+            </ul>
+          </section>
+
+          <section class="dev-portfolio__section">
+            <h2 class="dev-portfolio__section-title">Competencias Profesionales</h2>
+            <ul class="dev-portfolio__list dev-portfolio__list--columns">
+              <li>Análisis estructurado de problemas.</li>
+              <li>Traducción de requerimientos a soluciones técnicas.</li>
+              <li>Trabajo colaborativo y comunicación con equipos multidisciplinares.</li>
+              <li>Investigación y experimentación tecnológica.</li>
+              <li>Aprendizaje autónomo y mejora continua.</li>
+              <li>Gestión del tiempo y organización personal.</li>
+            </ul>
+          </section>
+
+          <section class="dev-portfolio__section">
+            <h2 class="dev-portfolio__section-title">Contacto</h2>
+            <ul class="dev-portfolio__contact-list">
+              <li>
+                <span class="dev-portfolio__contact-label">Tel:</span>
+                <a href="tel:+573137555023" class="dev-portfolio__contact-link">
+                  +57 3137555023
+                </a>
+              </li>
+              <li>
+                <span class="dev-portfolio__contact-label">Email:</span>
+                <a
+                  href="mailto:luisestebancastillopedroza90@gmail.com"
+                  class="dev-portfolio__contact-link"
+                >
+                  luisestebancastillopedroza90@gmail.com
+                </a>
+              </li>
+              <li>
+                <span class="dev-portfolio__contact-label">GitHub:</span>
+                <a
+                  href="https://github.com/lxiscxstillo"
+                  class="dev-portfolio__contact-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  github.com/lxiscxstillo
+                </a>
+              </li>
+              <li>
+                <span class="dev-portfolio__contact-label">LinkedIn:</span>
+                <a
+                  href="https://linkedin.com/in/tuusuario"
+                  class="dev-portfolio__contact-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  linkedin.com/in/tuusuario
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
       </section>
 
       <section
