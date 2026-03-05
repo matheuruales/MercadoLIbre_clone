@@ -1,0 +1,108 @@
+Plan (3 devs) para el clon inicial de MercadoLibre usando GitFlow y trabajando en ramas feature + Pull Requests a develop.  ￼
+
+Estructura base (todos)
+	•	Ramas principales: main y develop.  ￼
+	•	Cada cambio va en commits pequeños y claros (ej: feat: ..., style: ...).  ￼
+	•	Integración siempre por PR hacia develop con revisión del equipo.  ￼
+
+⸻
+
+Dev 1 — UI Core + Navbar + Footer (líder de integración)
+
+Ramas
+	•	feature/navbar (o feature/ui-core-navbar)
+	•	feature/footer
+	•	Apoya merge y resolución de conflictos en develop
+
+Tareas
+	1.	Crear estructura base de layout (container, grid, secciones con IDs).
+	2.	Implementar Navbar (logo, links, responsive básico).
+	3.	Implementar Footer (links, info, copyright).
+	4.	Preparar README con pasos de ejecución y convenciones de ramas/commits.
+
+Commits sugeridos
+	•	feat: crea layout base y secciones
+	•	feat: implementa navbar
+	•	style: mejora estilos navbar
+	•	feat: agrega footer
+	•	style: ajusta footer responsive
+
+PR
+	•	1 PR por feature (Navbar / Footer), ambos a develop.
+
+⸻
+
+Dev 2 — Buscador + Interacciones JS
+
+Ramas
+	•	feature/product-search
+	•	feature/js-interactions  ￼
+
+Tareas
+	1.	Implementar Buscador de productos (input + botón + resultados simulados o filtrado básico).
+	2.	JS: búsqueda (filtrar tarjetas destacadas), validación simple, “sin resultados”.
+	3.	Mejoras UX rápidas: focus states, enter para buscar, limpiar búsqueda.
+
+Commits sugeridos
+	•	feat: agrega seccion buscador
+	•	feat: renderiza resultados/filtrado
+	•	feat: enter para buscar + limpiar
+	•	style: estilos del buscador
+	•	test: prueba casos sin resultados (si aplica)
+
+PR
+	•	PR #1 buscador (HTML/CSS)
+	•	PR #2 interacciones (JS)
+
+⸻
+
+Dev 3 — Productos destacados + Servicios + Portafolio (su portafolio + coordinación)
+
+Ramas
+	•	feature/product-list
+	•	feature/services
+	•	feature/dev-portfolio (y su sub-branch personal)
+
+Tareas
+	1.	Crear Sección de productos destacados (cards + precio + envío/etiquetas dummy).
+	2.	Crear Sección de servicios (ej: pagos, envíos, protección, etc.).
+	3.	Crear Portafolio del dev3 cumpliendo requisitos:
+	•	Foto/avatar, nombre, descripción, servicios, tecnologías, link GitHub.  ￼
+	4.	Dejar lista la “plantilla” para que el Dev1 y Dev2 inserten su tarjeta/portafolio en sus ramas personales.
+
+Ramas de portafolio (para 3 devs)
+	•	feature/portafolio-dev1
+	•	feature/portafolio-dev2
+	•	feature/portafolio-dev3  ￼
+
+Commits sugeridos
+	•	feat: seccion productos destacados
+	•	style: cards de productos
+	•	feat: seccion servicios
+	•	feat: estructura portafolio dev3
+	•	style: estilos portafolio
+
+PR
+	•	1 PR productos
+	•	1 PR servicios
+	•	1 PR portafolio base + dev3
+
+⸻
+
+Flujo de trabajo diario (para que todos participen)
+	1.	Cada dev crea su rama feature/... desde develop.
+	2.	Trabaja en commits pequeños.
+	3.	Abre PR a develop.
+	4.	Revisión cruzada:
+	•	Dev1 revisa PR de Dev2
+	•	Dev2 revisa PR de Dev3
+	•	Dev3 revisa PR de Dev1
+	5.	Merge solo con aprobación y sin conflictos.
+
+⸻
+
+Integración final y entrega
+
+Cuando todo esté en develop: pruebas finales + release/tag (v1.0.0) y despliegue en GitHub Pages o Vercel.  ￼
+
+Si querés, te dejo también una plantilla de checklist para PRs (responsive, nombres de clases, validación HTML, etc.) para que las revisiones sean rápidas.
