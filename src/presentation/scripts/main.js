@@ -160,3 +160,136 @@ async function loadProducts() {
 
 retryBtn?.addEventListener("click", loadProducts);
 loadProducts();
+
+// View switching for home and developer portfolios
+const viewHome = document.querySelector("#view-home");
+const viewDev1 = document.querySelector("#view-dev1");
+const viewDev2 = document.querySelector("#view-dev2");
+const viewDev3 = document.querySelector("#view-dev3");
+
+const views = {
+  home: viewHome,
+  dev1: viewDev1,
+  dev2: viewDev2,
+  dev3: viewDev3,
+};
+
+const showView = (viewName) => {
+  Object.entries(views).forEach(([name, element]) => {
+    if (!element) return;
+    const isActive = name === viewName;
+    element.hidden = !isActive;
+    element.classList.toggle("view--active", isActive);
+  });
+};
+
+showView("home");
+
+// CV Devs dropdown behavior
+const devsMenuItem = document.querySelector(".ml-navbar__menu-item--dropdown");
+const devsToggle = devsMenuItem?.querySelector(
+  ".ml-navbar__menu-link--cv-devs"
+);
+const devsOptions = devsMenuItem?.querySelectorAll(".ml-navbar__dropdown-item");
+
+let devsDropdownOpen = false;
+
+const setDevsDropdownState = (isOpen) => {
+  devsDropdownOpen = isOpen;
+
+  if (!devsMenuItem || !devsToggle) return;
+
+  devsMenuItem.classList.toggle(
+    "ml-navbar__menu-item--dropdown-open",
+    isOpen
+  );
+  devsToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+};
+
+const openDevsDropdown = () => setDevsDropdownState(true);
+const closeDevsDropdown = () => setDevsDropdownState(false);
+
+devsToggle?.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+
+  if (devsDropdownOpen) {
+    closeDevsDropdown();
+  } else {
+    openDevsDropdown();
+  }
+});
+
+devsToggle?.addEventListener("keydown", (event) => {
+  if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+
+    if (!devsDropdownOpen) {
+      openDevsDropdown();
+    }
+
+    const firstOption = devsOptions?.[0];
+    if (firstOption instanceof HTMLElement) {
+      firstOption.focus();
+    }
+  }
+});
+
+devsOptions?.forEach((option) => {
+  option.addEventListener("click", (event) => {
+    event.stopPropagation();
+
+    const devKey = option.getAttribute("data-dev");
+    if (devKey && devKey in views) {
+      showView(devKey);
+    }
+
+    closeDevsDropdown();
+  });
+
+  option.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeDevsDropdown();
+      devsToggle?.focus();
+    }
+  });
+});
+
+document.addEventListener("click", (event) => {
+  if (!devsDropdownOpen || !devsMenuItem) {
+    return;
+  }
+
+  if (event.target instanceof Node && !devsMenuItem.contains(event.target)) {
+    closeDevsDropdown();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && devsDropdownOpen) {
+    closeDevsDropdown();
+    devsToggle?.focus();
+  }
+});
+
+// Reset to home view when clicking regular nav links without real href
+const navLinks = document.querySelectorAll(".ml-navbar__menu-link");
+
+navLinks.forEach((link) => {
+  if (
+    link.classList.contains("ml-navbar__menu-link--cv-devs") ||
+    link.tagName !== "A"
+  ) {
+    return;
+  }
+
+  const href = link.getAttribute("href");
+  if (!href || href === "#") {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      showView("home");
+      closeDevsDropdown();
+    });
+  }
+});
