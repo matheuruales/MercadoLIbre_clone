@@ -125,6 +125,53 @@ a   { text-decoration: none; color: inherit; }
   transform: rotate(45deg);
 }
 
+.ml-navbar__search-suggestions {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+  z-index: 120;
+  max-height: min(360px, 60vh);
+  overflow-y: auto;
+}
+
+.ml-navbar__suggestion-item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+}
+
+.ml-navbar__suggestion-item:hover,
+.ml-navbar__suggestion-item.is-active {
+  background: #f3f4f6;
+}
+
+.ml-navbar__suggestion-label {
+  font-size: 14px;
+  color: #111827;
+}
+
+.ml-navbar__suggestion-type {
+  font-size: 11px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
 .ml-navbar__account-nav {
   display: flex;
   align-items: center;
