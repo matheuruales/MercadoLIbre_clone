@@ -569,6 +569,10 @@ a   { text-decoration: none; color: inherit; }
   .ml-navbar__top   { gap: 16px; }
   .ml-navbar__menu-list { gap: 14px; }
   .product-grid { grid-template-columns: repeat(3, 1fr); }
+  .dev-portfolio__skills-grid,
+  .dev-portfolio__projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
@@ -590,6 +594,13 @@ a   { text-decoration: none; color: inherit; }
   .product-card__body  { padding: 8px 10px 10px; }
   .product-card__price { font-size: 16px; }
   .product-card__media { padding: 12px; }
+  .dev-portfolio__skills-grid,
+  .dev-portfolio__projects-grid {
+    grid-template-columns: 1fr;
+  }
+  .dev-portfolio__list--columns {
+    columns: 1;
+  }
 }
 
 @media (max-width: 768px) {
@@ -923,6 +934,231 @@ a   { text-decoration: none; color: inherit; }
   margin: 0;
   color: var(--ml-muted);
   font-size: 15px;
+}
+
+.dev-portfolio__hero {
+  display: flex;
+  align-items: center;
+}
+
+.dev-portfolio__hero-main {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.dev-portfolio__avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--ml-blue);
+}
+
+.dev-portfolio__avatar-initials {
+  letter-spacing: 1px;
+}
+
+.dev-portfolio__hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dev-portfolio__hero-tag {
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ml-muted);
+}
+
+.dev-portfolio__hero-name {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.dev-portfolio__hero-role {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ml-muted);
+}
+
+.dev-portfolio__hero-location {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--ml-ink);
+}
+
+.dev-portfolio__hero-actions {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dev-portfolio__hero-btn {
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ml-ink);
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.dev-portfolio__hero-btn--primary {
+  border-color: var(--ml-blue);
+  background: var(--ml-blue);
+  color: #ffffff;
+}
+
+.dev-portfolio__hero-btn:hover {
+  background: #f3f4f6;
+}
+
+.dev-portfolio__hero-btn--primary:hover {
+  background: #2968c8;
+}
+
+.dev-portfolio__content {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.dev-portfolio__section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: var(--ml-shadow);
+}
+
+.dev-portfolio__section-title {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.dev-portfolio__paragraph {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: var(--ml-ink);
+}
+
+.dev-portfolio__paragraph--strong {
+  font-weight: 600;
+}
+
+.dev-portfolio__skills-grid,
+.dev-portfolio__projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.dev-portfolio__projects-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.dev-portfolio__card {
+  background: #f9fafb;
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.dev-portfolio__card--wide {
+  grid-column: 1 / -1;
+}
+
+.dev-portfolio__card-title {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dev-portfolio__list {
+  margin: 0;
+  padding-left: 16px;
+  font-size: 13px;
+  color: var(--ml-ink);
+}
+
+.dev-portfolio__list li {
+  margin-bottom: 4px;
+}
+
+.dev-portfolio__list--inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.dev-portfolio__list--inline li::before {
+  content: "• ";
+  color: var(--ml-blue);
+}
+
+.dev-portfolio__list--columns {
+  columns: 2;
+  column-gap: 24px;
+}
+
+.dev-portfolio__experience-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dev-portfolio__experience-role {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.dev-portfolio__experience-meta {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--ml-muted);
+}
+
+.dev-portfolio__experience-project {
+  margin: 4px 0 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.dev-portfolio__contact-list {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  font-size: 14px;
+}
+
+.dev-portfolio__contact-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.dev-portfolio__contact-label {
+  font-weight: 600;
+}
+
+.dev-portfolio__contact-link {
+  color: var(--ml-blue);
 }
 
 @media (max-width: 768px) {
