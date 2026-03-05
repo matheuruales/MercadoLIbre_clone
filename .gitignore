@@ -1,0 +1,42 @@
+# Dependencias
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# IDEs y editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.sublime-project
+*.sublime-workspace
+*.iml
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Build y dist
+dist/
+build/
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+
+# Temporal
+.tmp/
+tmp/
+temp/
+
+# Otros archivos locales
+.claude/
+.git/
+*.bak
