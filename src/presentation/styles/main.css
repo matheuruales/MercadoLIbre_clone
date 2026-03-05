@@ -948,20 +948,18 @@ a   { text-decoration: none; color: inherit; }
 }
 
 .dev-portfolio__avatar {
-  width: 72px;
-  height: 72px;
+  width: 88px;
+  height: 88px;
   border-radius: 999px;
   background: #f3f4f6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--ml-blue);
+  overflow: hidden;
+  box-shadow: 0 0 0 4px #ffe600, 0 0 0 8px rgba(255, 230, 0, 0.25);
 }
 
-.dev-portfolio__avatar-initials {
-  letter-spacing: 1px;
+.dev-portfolio__avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .dev-portfolio__hero-text {
