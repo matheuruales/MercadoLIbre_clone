@@ -92,6 +92,53 @@
               <li class="ml-navbar__menu-item">
                 <a href="#" class="ml-navbar__menu-link">Ayuda / PQR</a>
               </li>
+              <li class="ml-navbar__menu-item ml-navbar__menu-item--dropdown">
+                <button
+                  type="button"
+                  class="ml-navbar__menu-link ml-navbar__menu-link--button ml-navbar__menu-link--cv-devs"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="ml-navbar-devs-dropdown"
+                >
+                  CV Devs
+                </button>
+                <ul
+                  class="ml-navbar__dropdown"
+                  id="ml-navbar-devs-dropdown"
+                  role="menu"
+                >
+                  <li>
+                    <button
+                      type="button"
+                      class="ml-navbar__dropdown-item"
+                      data-dev="dev1"
+                      role="menuitem"
+                    >
+                      Dev1
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      class="ml-navbar__dropdown-item"
+                      data-dev="dev2"
+                      role="menuitem"
+                    >
+                      Dev2
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      class="ml-navbar__dropdown-item"
+                      data-dev="dev3"
+                      role="menuitem"
+                    >
+                      Dev3
+                    </button>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </nav>
         </div>
@@ -100,7 +147,8 @@
 
     <!-- ══ PRODUCTOS (feature/matheu/ui-styles) ══ -->
     <main class="container">
-      <div class="section-header">
+      <div id="view-home" class="view view--active" data-view="home">
+        <div class="section-header">
         <h1 class="section-header__title">Ofertas del día</h1>
         <span class="section-header__subtitle">Productos seleccionados para vos</span>
       </div>
@@ -122,6 +170,49 @@
         <p>No se pudieron cargar los productos.</p>
         <button id="retry-btn" class="retry-btn">Reintentar</button>
       </div>
+      </div>
+
+      <section
+        id="view-dev1"
+        class="view dev-portfolio dev-portfolio--dev1"
+        data-view="dev1"
+        hidden
+      >
+        <header class="dev-portfolio__header">
+          <h1 class="dev-portfolio__title">Developer Portfolio Placeholder</h1>
+          <p class="dev-portfolio__subtitle">
+            This space will contain the portfolio of Dev1.
+          </p>
+        </header>
+      </section>
+
+      <section
+        id="view-dev2"
+        class="view dev-portfolio dev-portfolio--dev2"
+        data-view="dev2"
+        hidden
+      >
+        <header class="dev-portfolio__header">
+          <h1 class="dev-portfolio__title">Developer Portfolio Placeholder</h1>
+          <p class="dev-portfolio__subtitle">
+            This space will contain the portfolio of Dev2.
+          </p>
+        </header>
+      </section>
+
+      <section
+        id="view-dev3"
+        class="view dev-portfolio dev-portfolio--dev3"
+        data-view="dev3"
+        hidden
+      >
+        <header class="dev-portfolio__header">
+          <h1 class="dev-portfolio__title">Developer Portfolio Placeholder</h1>
+          <p class="dev-portfolio__subtitle">
+            This space will contain the portfolio of Dev3.
+          </p>
+        </header>
+      </section>
     </main>
 
     <!-- ══ SERVICIOS ══ -->

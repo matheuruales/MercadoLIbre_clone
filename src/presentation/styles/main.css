@@ -292,6 +292,54 @@ a   { text-decoration: none; color: inherit; }
   font-weight: 600;
 }
 
+.ml-navbar__menu-link--button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.ml-navbar__menu-item--dropdown {
+  position: relative;
+}
+
+.ml-navbar__dropdown {
+  display: none;
+  position: absolute;
+  top: 140%;
+  left: 0;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: var(--ml-shadow);
+  padding: 6px 0;
+  min-width: 160px;
+  z-index: 20;
+}
+
+.ml-navbar__menu-item--dropdown-open .ml-navbar__dropdown {
+  display: block;
+}
+
+.ml-navbar__dropdown-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 14px;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: #333333;
+  cursor: pointer;
+}
+
+.ml-navbar__dropdown-item:hover,
+.ml-navbar__dropdown-item:focus-visible {
+  background: #f3f4f6;
+  outline: none;
+}
+
 /* ══════════════════════════════════════
    PRODUCTS — feature/matheu/ui-styles
 ══════════════════════════════════════ */
@@ -846,4 +894,51 @@ a   { text-decoration: none; color: inherit; }
   .ml-footer__inner { grid-template-columns: 1fr 1fr; gap: 24px; padding: 28px 16px; }
   .ml-footer__bottom-inner { flex-direction: column; align-items: flex-start; }
   .ml-footer__legal { gap: 12px; }
+.view[hidden] {
+  display: none;
+}
+
+.dev-portfolio {
+  padding: 24px 0 72px;
+}
+
+.dev-portfolio__header {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px 32px;
+  margin: 24px 0 28px;
+  box-shadow: var(--ml-shadow);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dev-portfolio__title {
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.dev-portfolio__subtitle {
+  margin: 0;
+  color: var(--ml-muted);
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .ml-navbar__menu-item--dropdown {
+    width: 100%;
+  }
+
+  .ml-navbar__dropdown {
+    position: static;
+    box-shadow: none;
+    border-radius: 0;
+    background: transparent;
+    padding: 4px 0 0;
+  }
+
+  .ml-navbar__dropdown-item {
+    padding-left: 0;
+  }
 }
