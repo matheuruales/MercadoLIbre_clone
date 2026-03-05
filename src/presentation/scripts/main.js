@@ -1,4 +1,51 @@
 /* ═══════════════════════════════════
+   HERO SLIDER
+═══════════════════════════════════ */
+(function () {
+  const track  = document.getElementById("sliderTrack");
+  const dotsEl = document.getElementById("sliderDots");
+  const prev   = document.getElementById("sliderPrev");
+  const next   = document.getElementById("sliderNext");
+  if (!track) return;
+
+  const slides = track.querySelectorAll("img");
+  const total  = slides.length;
+  let current  = 0;
+  let timer;
+
+  slides.forEach((_, i) => {
+    const btn = document.createElement("button");
+    btn.className = "dot" + (i === 0 ? " active" : "");
+    btn.setAttribute("aria-label", "Ir a slide " + (i + 1));
+    btn.addEventListener("click", () => goTo(i));
+    dotsEl.appendChild(btn);
+  });
+
+  function goTo(index) {
+    current = (index + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dotsEl.querySelectorAll(".dot").forEach((d, i) =>
+      d.classList.toggle("active", i === current)
+    );
+    resetTimer();
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 5000);
+  }
+
+  prev?.addEventListener("click", () => goTo(current - 1));
+  next?.addEventListener("click", () => goTo(current + 1));
+
+  // Pausa al pasar el mouse
+  track.parentElement.addEventListener("mouseenter", () => clearInterval(timer));
+  track.parentElement.addEventListener("mouseleave", resetTimer);
+
+  resetTimer();
+})();
+
+/* ═══════════════════════════════════
    NAVBAR — feature/luis/navbar
 ═══════════════════════════════════ */
 const searchForm    = document.querySelector(".ml-navbar__search");
