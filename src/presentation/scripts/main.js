@@ -54,12 +54,257 @@ const locationButton = document.querySelector(".ml-navbar__location");
 const cartButton    = document.querySelector(".ml-navbar__cart");
 const menuToggle    = document.querySelector(".ml-navbar__menu-toggle");
 const menu          = document.querySelector(".ml-navbar__menu");
+const MIN_CHARS_FOR_SUGGESTIONS = 2;
+const MAX_SUGGESTIONS = 8;
+
+let allProducts = [];
+let suggestionItems = [];
+let activeSuggestionIndex = -1;
+let suggestionDebounceId = null;
+
+const suggestionsList = document.createElement("ul");
+suggestionsList.className = "ml-navbar__search-suggestions";
+suggestionsList.hidden = true;
+searchForm?.appendChild(suggestionsList);
+
+function normalizeForSearch(value) {
+  return String(value ?? "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function getOrCreateCountElement() {
+  let countEl = document.querySelector(".products-count");
+  if (!countEl && grid) {
+    countEl = document.createElement("p");
+    countEl.className = "products-count";
+    grid.before(countEl);
+  }
+  return countEl;
+}
+
+function renderProducts(products) {
+  if (!grid) return;
+  grid.innerHTML = "";
+
+  const countEl = getOrCreateCountElement();
+  if (countEl) {
+    countEl.textContent = `${products.length} productos encontrados`;
+  }
+
+  if (!products.length) return;
+
+  const fragment = document.createDocumentFragment();
+  products.forEach((product, index) => {
+    fragment.appendChild(createCard(product, index));
+  });
+  grid.appendChild(fragment);
+}
+
+function applySearch(query) {
+  const normalizedQuery = normalizeForSearch(query);
+  if (!normalizedQuery) {
+    renderProducts(allProducts);
+    return;
+  }
+
+  const terms = normalizedQuery.split(/\s+/).filter(Boolean);
+
+  const scoredProducts = allProducts
+    .map((product) => {
+      const title = normalizeForSearch(product.title);
+      const brand = normalizeForSearch(product.brand);
+      const category = normalizeForSearch(product.category);
+      const description = normalizeForSearch(product.description);
+      const searchable = `${title} ${brand} ${category} ${description}`;
+
+      const allTermsMatch = terms.every((term) => searchable.includes(term));
+      if (!allTermsMatch) return null;
+
+      let score = 0;
+      if (title === normalizedQuery) score += 1000;
+      if (title.startsWith(normalizedQuery)) score += 500;
+      if (title.includes(normalizedQuery)) score += 200;
+      if (brand.includes(normalizedQuery)) score += 120;
+      if (category.includes(normalizedQuery)) score += 80;
+
+      terms.forEach((term) => {
+        if (title.includes(term)) score += 30;
+        if (brand.includes(term)) score += 20;
+        if (category.includes(term)) score += 10;
+        if (description.includes(term)) score += 5;
+      });
+
+      return { product, score };
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.score - a.score)
+    .map((item) => item.product);
+
+  renderProducts(scoredProducts);
+}
+
+function closeSuggestions() {
+  activeSuggestionIndex = -1;
+  suggestionsList.hidden = true;
+}
+
+function openSuggestions() {
+  suggestionsList.hidden = false;
+}
+
+function performSearch(query) {
+  const targetUrl = new URL(window.location.href);
+  if (query) {
+    targetUrl.searchParams.set("search", query);
+  } else {
+    targetUrl.searchParams.delete("search");
+  }
+  window.history.replaceState({}, "", targetUrl);
+  applySearch(query);
+}
+
+function getSuggestions(query) {
+  const normalizedQuery = normalizeForSearch(query);
+  if (normalizedQuery.length < MIN_CHARS_FOR_SUGGESTIONS) return [];
+
+  const terms = normalizedQuery.split(/\s+/).filter(Boolean);
+  if (!terms.length) return [];
+
+  const candidates = allProducts
+    .map((product) => {
+      const title = normalizeForSearch(product.title);
+      const brand = normalizeForSearch(product.brand);
+      const category = normalizeForSearch(product.category);
+      const searchable = `${title} ${brand} ${category}`;
+      const allTermsMatch = terms.every((term) => searchable.includes(term));
+
+      if (!allTermsMatch) return null;
+
+      let score = 0;
+      if (title === normalizedQuery) score += 200;
+      if (title.startsWith(normalizedQuery)) score += 120;
+      if (title.includes(normalizedQuery)) score += 80;
+      if (brand.includes(normalizedQuery)) score += 35;
+      if (category.includes(normalizedQuery)) score += 25;
+
+      return {
+        type: "Producto",
+        value: product.title,
+        score,
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, MAX_SUGGESTIONS);
+
+  const seen = new Set();
+  return candidates.filter((item) => {
+    const key = normalizeForSearch(item.value);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function renderSuggestions() {
+  suggestionsList.innerHTML = "";
+  if (!suggestionItems.length) {
+    closeSuggestions();
+    return;
+  }
+
+  suggestionsList.innerHTML = suggestionItems
+    .map((item, index) => {
+      const activeClass = index === activeSuggestionIndex ? " is-active" : "";
+      return `
+        <li>
+          <button type="button" class="ml-navbar__suggestion-item${activeClass}" data-index="${index}">
+            <span class="ml-navbar__suggestion-label">${escapeHtml(item.value)}</span>
+            <span class="ml-navbar__suggestion-type">${item.type}</span>
+          </button>
+        </li>
+      `;
+    })
+    .join("");
+
+  openSuggestions();
+}
 
 searchForm?.addEventListener("submit", (event) => {
   event.preventDefault();
-  const query = searchInput?.value.trim();
-  if (!query) return;
-  console.log("Buscar productos:", query);
+  const query = searchInput?.value.trim() ?? "";
+  const activeSuggestion = suggestionItems[activeSuggestionIndex];
+  const finalQuery = activeSuggestion?.value ?? query;
+  if (searchInput) searchInput.value = finalQuery;
+  performSearch(finalQuery);
+  closeSuggestions();
+});
+
+searchInput?.addEventListener("input", () => {
+  window.clearTimeout(suggestionDebounceId);
+  suggestionDebounceId = window.setTimeout(() => {
+    suggestionItems = getSuggestions(searchInput.value);
+    activeSuggestionIndex = suggestionItems.length ? 0 : -1;
+    renderSuggestions();
+  }, 200);
+});
+
+searchInput?.addEventListener("focus", () => {
+  suggestionItems = getSuggestions(searchInput.value);
+  activeSuggestionIndex = suggestionItems.length ? 0 : -1;
+  renderSuggestions();
+});
+
+searchInput?.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeSuggestions();
+    return;
+  }
+
+  if (suggestionsList.hidden || !suggestionItems.length) return;
+
+  if (event.key === "ArrowDown") {
+    event.preventDefault();
+    activeSuggestionIndex = (activeSuggestionIndex + 1) % suggestionItems.length;
+    renderSuggestions();
+  }
+
+  if (event.key === "ArrowUp") {
+    event.preventDefault();
+    activeSuggestionIndex = (activeSuggestionIndex - 1 + suggestionItems.length) % suggestionItems.length;
+    renderSuggestions();
+  }
+});
+
+suggestionsList.addEventListener("click", (event) => {
+  const option = event.target.closest("[data-index]");
+  if (!option) return;
+
+  const index = Number(option.dataset.index);
+  const selected = suggestionItems[index];
+  if (!selected) return;
+
+  if (searchInput) searchInput.value = selected.value;
+  performSearch(selected.value);
+  closeSuggestions();
+});
+
+document.addEventListener("pointerdown", (event) => {
+  if (!searchForm?.contains(event.target)) {
+    closeSuggestions();
+  }
 });
 
 locationButton?.addEventListener("click", () => {
@@ -188,16 +433,13 @@ async function loadProducts() {
     if (!res.ok) throw new Error("HTTP " + res.status);
     const data = await res.json();
 
-    grid.innerHTML = "";
+    allProducts = Array.isArray(data.products) ? data.products : [];
 
-    const countEl = document.createElement("p");
-    countEl.className = "products-count";
-    countEl.textContent = `${data.products.length} productos encontrados`;
-    grid.before(countEl);
-
-    const fragment = document.createDocumentFragment();
-    data.products.forEach((p, i) => fragment.appendChild(createCard(p, i)));
-    grid.appendChild(fragment);
+    const queryFromUrl = new URL(window.location.href).searchParams.get("search") ?? "";
+    if (searchInput) {
+      searchInput.value = queryFromUrl;
+    }
+    performSearch(queryFromUrl);
   } catch (err) {
     console.error("Error:", err);
     grid.innerHTML = "";
